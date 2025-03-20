@@ -41,10 +41,13 @@ const Header = () => {
                         <Link className="nav-link" to="/">Home</Link>
                       </li>
                       <li className="nav-item">
-                        <Link className="nav-link" to="/about">About</Link>
+                        <a className="nav-link" to="/about">About</a>
                       </li>
                       <li className="nav-item">
                         <Link className="nav-link" to="/contact">Contact us</Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link className="nav-link" to="/contact">Supscriptions</Link>
                       </li>
                     </ul>
                     <div className="sign_btn">
@@ -61,9 +64,8 @@ const Header = () => {
             <div className="row d_flex">
               <div className="col-md-5">
                 <div className="text-bg">
-                  <h1>Computer and <br />laptop shop</h1>
-                  <strong>Free Multipurpose Responsive</strong>
-                  <span>Landing Page 2019</span>
+                  <h1>Rent The Electronics with Ease</h1>
+                  <h2 style={{ color: "#2bcc91" }}>Rent the elelectronics at great prices with flexible plans</h2>
                   <a href="#">Buy Now</a>
                 </div>
               </div>
@@ -72,7 +74,6 @@ const Header = () => {
                   <figure>
                     <img src={topImg} alt="Top Image" />
                   </figure>
-                  <h3>01</h3>
                 </div>
               </div>
             </div>

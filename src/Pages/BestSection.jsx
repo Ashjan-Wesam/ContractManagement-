@@ -6,10 +6,10 @@ const BestSection = () => {
         <div className="row">
           <div className="col-md-12">
             <div className="titlepage">
-              <h2>Build With Best</h2>
+              <h2>Top-Tier Rentals</h2>
               <span>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna
+              Experience top-tier performance and reliability with our high-quality electronic devices,
+               available for flexible rental plans tailored to your needs.
               </span>
             </div>
           </div>
@@ -18,39 +18,36 @@ const BestSection = () => {
           <div className="col-md-4">
             <div className="best_box">
               <h4>
-                500GB <br /> Micro SD Card
+                  Dell XPS 13 laptop
               </h4>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod t dolor in reprehenderit in voluptate velit
+              High-performance laptop with Intel Core i7, 16GB RAM, and 512GB SSD—ideal for work and study.
               </p>
             </div>
           </div>
           <div className="col-md-4">
             <div className="best_box">
               <h4>
-                100GB <br /> Internal Ram
+                  PlayStation 5
               </h4>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod t dolor in reprehenderit in voluptate velit
+              Next-gen gaming with ultra-fast SSD, 4K graphics, and an immersive gaming experience.
               </p>
             </div>
           </div>
           <div className="col-md-4">
             <div className="best_box">
               <h4>
-                100% <br /> High Quality
+              Canon EOS R5 Camera
               </h4>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod t dolor in reprehenderit in voluptate velit
+              Professional mirrorless camera with 45MP sensor, 8K video recording, and fast autofocus.
               </p>
             </div>
           </div>
           <div className="col-md-12">
             <a className="read_more" href="#">
-              Read more
+              See more
             </a>
           </div>
         </div>

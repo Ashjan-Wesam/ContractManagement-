@@ -9,7 +9,7 @@ const About = () => {
             <div className="titlepage">
               <h2>About Pcoint</h2>
               <span>
-                d to be sure there isnt anything embarrassing hidden in the middle of text. All the Lorem Ipsum gener
+                Ensure a seamless experience with our reliable and high-quality electronic rentals, tailored to meet your needs.
               </span>
             </div>
           </div>

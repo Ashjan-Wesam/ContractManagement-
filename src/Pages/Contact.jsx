@@ -9,8 +9,7 @@ const Contact = () => {
             <div className="titlepage">
               <h2>Request a Call back</h2>
               <span>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor <br /> incididunt ut labore et dolore magna
+              Need assistance? Our team is here to help! Request a call, and we’ll get back to you as soon as possible.
               </span>
             </div>
           </div>
