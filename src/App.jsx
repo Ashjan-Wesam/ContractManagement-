@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
-import React from "react";
->>>>>>> 8d8795f7fe3b04d050fcc405b379e17d741f5f81
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
