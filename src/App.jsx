@@ -8,6 +8,7 @@ import Register from "./Pages/Register";
 import Profile from "./Pages/Profile";
 import Contracts from "./Pages/Contracts";
 import AdminDashboard from "./Pages/AdminDashboard";
+import Device from "./Pages/Device";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/contracts" element={<Contracts />} />
+            <Route path="/Device" element={<Device />} />
             <Route path="/admin" element={<AdminDashboard />} />
           </Routes>
         </main>

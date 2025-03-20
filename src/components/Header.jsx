@@ -2,8 +2,6 @@
 import { Link } from "react-router-dom";
 import "../assets/css/meanmenu.css";
 import logo from "../assets/images/logo.png";
-import topImg from "../assets/images/top_img.png";
-
 const Header = () => {
   return (
     <header>
@@ -47,7 +45,7 @@ const Header = () => {
                         <Link className="nav-link" to="/contact">Contact us</Link>
                       </li>
                       <li className="nav-item">
-                        <Link className="nav-link" to="/contact">Supscriptions</Link>
+                        <Link className="nav-link" to="/Device">Supscriptions</Link>
                       </li>
                     </ul>
                     <div className="sign_btn">
@@ -59,26 +57,7 @@ const Header = () => {
             </div>
           </div>
         </div>
-        <section className="banner_main">
-          <div className="container-fluid">
-            <div className="row d_flex">
-              <div className="col-md-5">
-                <div className="text-bg">
-                  <h1>Rent The Electronics with Ease</h1>
-                  <h2 style={{ color: "#2bcc91" }}>Rent the elelectronics at great prices with flexible plans</h2>
-                  <a href="#">Buy Now</a>
-                </div>
-              </div>
-              <div className="col-md-7 padding_right1">
-                <div className="text-img">
-                  <figure>
-                    <img src={topImg} alt="Top Image" />
-                  </figure>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        
       </div>
     </header>
   );

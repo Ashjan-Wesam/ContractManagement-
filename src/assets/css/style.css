@@ -274,10 +274,11 @@ button {
 
 .navigation.navbar-dark .navbar-nav .nav-link {
      padding: 0 25px;
-     color: #fff;
+     color: black;
      font-size: 16px;
      line-height: 20px;
      text-transform: uppercase;
+
 }
 
 .navigation.navbar-dark .navbar-nav .nav-link:focus,
@@ -325,9 +326,12 @@ button {
 .header {
      width: 100%;
      background: transparent;
-     padding: 30px 30px;
+     padding: 10px 20px;
      position: absolute;
      z-index: 999;
+     background-color: white;
+     box-shadow: 0 0 2px rgb(204, 200, 200);
+    
 }
 
 .logo a {
