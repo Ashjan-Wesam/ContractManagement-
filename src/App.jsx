@@ -9,6 +9,7 @@ import Profile from "./Pages/Profile";
 import Contracts from "./Pages/Contracts";
 import AdminDashboard from "./Pages/AdminDashboard";
 import Device from "./Pages/Device";
+import EditUser from "./Pages/EditUser";
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/editProfile" element={<EditUser/>} />
+
+            
             <Route path="/contracts" element={<Contracts />} />
             <Route path="/Device" element={<Device />} />
             <Route path="/admin" element={<AdminDashboard />} />
