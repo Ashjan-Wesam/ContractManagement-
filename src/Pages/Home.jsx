@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import About from "./About";
@@ -21,3 +22,13 @@ function Home() {
 }
 
 export default Home;
+=======
+export default function Home() {
+    return (
+      <div className="">
+        <h1 className="">Welcome to Contract Management System</h1>
+        <p className="">Manage contracts efficiently and securely.</p>
+      </div>
+    );
+  }
+>>>>>>> 8d8795f7fe3b04d050fcc405b379e17d741f5f81

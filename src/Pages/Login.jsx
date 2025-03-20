@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Link } from "react-router-dom";
 
 function LoginPage() {
@@ -25,3 +26,17 @@ function LoginPage() {
 }
 
 export default LoginPage;
+=======
+export default function Login() {
+    return (
+      <div className="">
+        <h2 className="">Login</h2>
+        <form className="">
+          <input type="email" placeholder="Email" className="" />
+          <input type="password" placeholder="Password" className="" />
+          <button className="">Login</button>
+        </form>
+      </div>
+    );
+  }
+>>>>>>> 8d8795f7fe3b04d050fcc405b379e17d741f5f81

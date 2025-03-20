@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Link } from "react-router-dom";
 
 function RegisterPage() {
@@ -43,3 +44,18 @@ function RegisterPage() {
 }
 
 export default RegisterPage;
+=======
+export default function Register() {
+    return (
+      <div className="">
+        <h2 className="">Register</h2>
+        <form className="">
+          <input type="text" placeholder="Full Name" className="" />
+          <input type="email" placeholder="Email" className="" />
+          <input type="password" placeholder="Password" className="" />
+          <button className="">Register</button>
+        </form>
+      </div>
+    );
+  }
+>>>>>>> 8d8795f7fe3b04d050fcc405b379e17d741f5f81
