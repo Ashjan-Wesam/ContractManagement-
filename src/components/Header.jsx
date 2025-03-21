@@ -45,7 +45,7 @@ const Header = () => {
                         <Link className="nav-link" to="/contact">Contact us</Link>
                       </li>
                       <li className="nav-item">
-                        <Link className="nav-link" to="/Device">Supscriptions</Link>
+                        <Link className="nav-link" to="/Device">Devices</Link>
                       </li>
                     </ul>
                     <div className="sign_btn">
