@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "../assets/css/Device.css"
+import "../assets/css/Device.css";
 
 function Device() {
     const [devices, setDevices] = useState([]);
@@ -8,12 +8,11 @@ function Device() {
     const [search, setSearch] = useState("");
     const [category, setCategory] = useState("");
     const [price, setPrice] = useState("");
-  
+
     useEffect(() => {
         fetch("http://127.0.0.1:8000/api/devices")
           .then((res) => res.json())
           .then((data) => {
-            console.log("Fetched data:", data);
             if (Array.isArray(data.devices)) {
               setDevices(data.devices);
             } else {
@@ -22,8 +21,8 @@ function Device() {
             }
           })
           .catch((err) => console.error("Error fetching devices:", err));
-      }, []);
-      
+    }, []);
+
     useEffect(() => {
         fetch("http://127.0.0.1:8000/api/categories")
           .then((res) => res.json())
@@ -36,15 +35,15 @@ function Device() {
             }
           })
           .catch((err) => console.error("Error fetching categories:", err));
-      }, []);
-      
+    }, []);
+
     const filteredDevices = devices.filter(
         (device) =>
           device.name.toLowerCase().includes(search.toLowerCase()) &&
           (category === "" || device.category?.name === category) &&
           (price === "" || parseFloat(device.price) <= parseFloat(price))
-      );
-  
+    );
+
     return (
       <div className="device-container">
         <div className="device-content">
@@ -85,6 +84,6 @@ function Device() {
         </div>
       </div>
     );
-  }
+}
 
-  export default Device;
+export default Device;

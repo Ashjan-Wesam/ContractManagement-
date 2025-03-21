@@ -10,6 +10,7 @@ import Contracts from "./Pages/Contracts";
 import AdminDashboard from "./Pages/AdminDashboard";
 import Device from "./Pages/Device";
 import EditUser from "./Pages/EditUser";
+import DeviceDetails  from "./Pages/DeviceDetails";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             
             <Route path="/contracts" element={<Contracts />} />
             <Route path="/Device" element={<Device />} />
+            <Route path="/device/:id" element={<DeviceDetails />} />
             <Route path="/admin" element={<AdminDashboard />} />
           </Routes>
         </main>
