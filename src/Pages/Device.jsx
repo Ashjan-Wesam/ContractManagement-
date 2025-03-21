@@ -8,6 +8,8 @@ function Device() {
     const [search, setSearch] = useState("");
     const [category, setCategory] = useState("");
     const [price, setPrice] = useState("");
+    const [currentPage, setCurrentPage] = useState(1);
+    const devicesPerPage = 6;
 
     useEffect(() => {
         fetch("http://127.0.0.1:8000/api/devices")
@@ -43,6 +45,11 @@ function Device() {
           (category === "" || device.category?.name === category) &&
           (price === "" || parseFloat(device.price) <= parseFloat(price))
     );
+    const indexOfLastDevice = currentPage * devicesPerPage;
+    const indexOfFirstDevice = indexOfLastDevice - devicesPerPage;
+    const currentDevices = filteredDevices.slice(indexOfFirstDevice, indexOfLastDevice);
+
+    const totalPages = Math.ceil(filteredDevices.length / devicesPerPage);
 
     return (
       <div className="device-container">
@@ -81,6 +88,21 @@ function Device() {
               </div>
             ))}
           </div>
+          <div className="pagination">
+                    <button 
+                        onClick={() => setCurrentPage(currentPage - 1)} 
+                        disabled={currentPage === 1}
+                    >
+                        Previous
+                    </button>
+                    <span> Page {currentPage} of {totalPages} </span>
+                    <button 
+                        onClick={() => setCurrentPage(currentPage + 1)} 
+                        disabled={currentPage === totalPages}
+                    >
+                        Next
+                    </button>
+                </div>
         </div>
       </div>
     );

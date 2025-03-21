@@ -11,6 +11,7 @@ import AdminDashboard from "./Pages/AdminDashboard";
 import Device from "./Pages/Device";
 import EditUser from "./Pages/EditUser";
 import DeviceDetails  from "./Pages/DeviceDetails";
+import AllContract from "./Pages/AllContract";
 
 function App() {
   return (
@@ -27,6 +28,8 @@ function App() {
 
             
             <Route path="/contracts" element={<Contracts />} />
+            <Route path="/allContracts" element={<AllContract />} />
+
             <Route path="/Device" element={<Device />} />
             <Route path="/device/:id" element={<DeviceDetails />} />
             <Route path="/admin" element={<AdminDashboard />} />
