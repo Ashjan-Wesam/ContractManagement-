@@ -1,84 +1,90 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import "../assets/css/Device.css"
 
-export default function RentalPage() {
-  const [devices, setDevices] = useState([]);
-  const [search, setSearch] = useState("");
-  const [category, setCategory] = useState("");
-  const [selectedDevice, setSelectedDevice] = useState(null);
-  const [showForm, setShowForm] = useState(false);
-
-  useEffect(() => {
-    fetch("")
-      .then((res) => res.json())
-      .then((data) => setDevices(data))
-      .catch((err) => console.error("Error fetching devices:", err));
-  }, []);
-
-  const filteredDevices = devices.filter(
-    (device) =>
-      device.name.toLowerCase().includes(search.toLowerCase()) &&
-      (category === "" || device.category === category)
-  );
-
-  return (
-    <div style={{ padding: "24px" }}>
-      <div style={{ display: "flex", gap: "16px", marginBottom: "24px" }}>
-        <input 
-          type="text" 
-          placeholder="Search devices..." 
-          value={search} 
-          onChange={(e) => setSearch(e.target.value)} 
-          style={{ padding: "8px", width: "200px" }}
-        />
-        <select onChange={(e) => setCategory(e.target.value)} style={{ padding: "8px" }}>
-          <option value="">All</option>
-          <option value="Laptop">Laptop</option>
-          <option value="Tablet">Tablet</option>
-        </select>
-      </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px" }}>
-        {filteredDevices.map((device) => (
-          <div key={device.id} style={{ border: "1px solid #ddd", padding: "16px", borderRadius: "8px" }}>
-            <h3 style={{ fontSize: "18px", fontWeight: "bold" }}>{device.name}</h3>
-            <p>{device.category}</p>
-            <p style={{ color: "gray" }}>{device.price}</p>
-            <button 
-              onClick={() => {
-                setSelectedDevice(device);
-                setShowForm(true);
-              }}
-              style={{ marginTop: "8px", padding: "8px 16px", backgroundColor: "blue", color: "white", border: "none", borderRadius: "4px" }}
-            >
-              Rent Now
-            </button>
-          </div>
-        ))}
-      </div>
-      {showForm && (
-        <div style={{ position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)", backgroundColor: "white", padding: "24px", boxShadow: "0 0 10px rgba(0,0,0,0.2)", borderRadius: "8px" }}>
-          <h2>Rent {selectedDevice?.name}</h2>
-          <form>
-            <label style={{ display: "block", marginBottom: "8px" }}>Rental Duration:</label>
-            <select style={{ padding: "8px", width: "100%" }}>
-              <option value="1 week">1 Week</option>
-              <option value="1 month">1 Month</option>
-              <option value="3 months">3 Months</option>
+function Device() {
+    const [devices, setDevices] = useState([]);
+    const [categories, setCategories] = useState([]);
+    const [search, setSearch] = useState("");
+    const [category, setCategory] = useState("");
+    const [price, setPrice] = useState("");
+  
+    useEffect(() => {
+        fetch("http://127.0.0.1:8000/api/devices")
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("Fetched data:", data);
+            if (Array.isArray(data.devices)) {
+              setDevices(data.devices);
+            } else {
+              console.error("Unexpected data format:", data);
+              setDevices([]);
+            }
+          })
+          .catch((err) => console.error("Error fetching devices:", err));
+      }, []);
+      
+    useEffect(() => {
+        fetch("http://127.0.0.1:8000/api/categories")
+          .then((res) => res.json())
+          .then((data) => {
+            if (Array.isArray(data.categorys)) {
+              setCategories(data.categorys);
+            } else {
+              console.error("Unexpected categories format:", data);
+              setCategories([]);
+            }
+          })
+          .catch((err) => console.error("Error fetching categories:", err));
+      }, []);
+      
+    const filteredDevices = devices.filter(
+        (device) =>
+          device.name.toLowerCase().includes(search.toLowerCase()) &&
+          (category === "" || device.category?.name === category) &&
+          (price === "" || parseFloat(device.price) <= parseFloat(price))
+      );
+  
+    return (
+      <div className="device-container">
+        <div className="device-content">
+          <div className="device-filters">
+            <input 
+              type="text" 
+              placeholder="Search devices..." 
+              value={search} 
+              onChange={(e) => setSearch(e.target.value)} 
+              className="search-input"
+            />
+            <select onChange={(e) => setCategory(e.target.value)} className="category-select">
+              <option value="">All Categories</option>
+              {categories.map((cat) => (
+                <option key={cat.id} value={cat.name}>{cat.name}</option>
+              ))}
             </select>
-            <button 
-              type="submit" 
-              style={{ marginTop: "16px", padding: "8px 16px", backgroundColor: "green", color: "white", border: "none", borderRadius: "4px", width: "100%" }}
-            >
-              Submit Contract
-            </button>
-          </form>
-          <button 
-            onClick={() => setShowForm(false)} 
-            style={{ marginTop: "8px", padding: "8px", backgroundColor: "red", color: "white", border: "none", borderRadius: "4px" }}
-          >
-            Close
-          </button>
+            <input 
+              type="number" 
+              placeholder="Max Price" 
+              value={price} 
+              onChange={(e) => setPrice(e.target.value)} 
+              className="price-input"
+            />
+          </div>
+          <div className="device-grid">
+            {filteredDevices.map((device) => (
+              <div key={device.id} className="device-card">
+                <h3 className="device-title">{device.name}</h3>
+                <p className="device-category">{device.category?.name || "Unknown Category"}</p>
+                <p className="device-price">${device.price}</p>
+                <Link to={`/device/${device.id}`} className="device-link">
+                  <button className="device-button">View Details</button>
+                </Link>
+              </div>
+            ))}
+          </div>
         </div>
-      )}
-    </div>
-  );
-}
+      </div>
+    );
+  }
+
+  export default Device;
