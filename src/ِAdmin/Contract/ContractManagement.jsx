@@ -24,7 +24,7 @@ const ContractsList = () => {
         contract.id === id ? { ...contract, status: newStatus } : contract
       )
     );
-
+  
     fetch(`http://127.0.0.1:8000/api/contracts/${id}`, {
       method: "PUT",
       headers: {
@@ -32,12 +32,23 @@ const ContractsList = () => {
       },
       body: JSON.stringify({ status: newStatus }),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          return response.json().then((errorData) => {
+            throw new Error(errorData.message || 'Error updating contract status');
+          });
+        }
+        return response.json();
+      })
       .then((updatedContract) => {
         console.log("Contract updated successfully:", updatedContract);
       })
-      .catch((error) => console.error("Error updating contract status:", error));
+      .catch((error) => {
+        console.error("Error updating contract status:", error);
+      });
+    
   };
+  
 
   if (loading) {
     return <p>Loading contracts...</p>;
@@ -84,7 +95,6 @@ const ContractsList = () => {
       </div>
     </div>
   );
-  
 };
 
 export default ContractsList;

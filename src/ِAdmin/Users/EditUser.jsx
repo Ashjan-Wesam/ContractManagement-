@@ -15,33 +15,57 @@ const EditUserr = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  // استخدام useEffect لجلب بيانات المستخدم عند تحميل الصفحة
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/api/users/${id}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setEditedUser({
-          name: data.user?.name || "",
-          email: data.user?.email || "",
-          role: data.user?.role || "user",
-          phone: data.user?.phone || "",
-          address: data.user?.address || "",
-          img: data.user?.img || "",
-        });
-      })
-      .catch((error) => console.error("Error fetching user:", error));
+    const fetchUser = async () => {
+      try {
+        const response = await fetch(`http://127.0.0.1:8000/api/users/${id}`);
+        const data = await response.json();
+        if (data.user) {
+          setEditedUser({
+            name: data.user.name || "",
+            email: data.user.email || "",
+            role: data.user.role || "user",
+            phone: data.user.phone || "",
+            address: data.user.address || "",
+            img: data.user.img || "",
+          });
+        }
+      } catch (error) {
+        console.error("Error fetching user:", error);
+      }
+    };
+
+    fetchUser();
   }, [id]);
 
-  const updateUser = () => {
+  // دالة تحديث المستخدم
+  const updateUser = (e) => {
+    e.preventDefault(); // منع إرسال النموذج الافتراضي
+  
     fetch(`http://127.0.0.1:8000/api/users/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(editedUser),
     })
-      .then(() => {
-        navigate("/admin");
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          // إظهار الرسالة بنجاح التحديث
+          // alert("User updated successfully!");
+      
+          // التوجيه إلى صفحة الإدارة مباشرة بعد التحديث
+        } else {
+          // alert("Error: " + data.message || "Something went wrong!");
+          navigate("/admin");
+
+        }
       })
       .catch((error) => console.error("Error updating user:", error));
   };
+  
+  
+  
 
   return (
     <div style={{ paddingTop: "90px" }}>
@@ -50,6 +74,7 @@ const EditUserr = () => {
 
         <form onSubmit={updateUser} className="space-y-6">
           <div className="grid grid-cols-2 gap-4">
+            {/* الاسم */}
             <div className="flex flex-col space-y-2">
               <label className="text-lg font-medium">Name</label>
               <input
@@ -62,6 +87,7 @@ const EditUserr = () => {
               />
             </div>
 
+            {/* البريد الإلكتروني */}
             <div className="flex flex-col space-y-2">
               <label className="text-lg font-medium">Email</label>
               <input
@@ -74,6 +100,7 @@ const EditUserr = () => {
               />
             </div>
 
+            {/* الدور */}
             <div className="flex flex-col space-y-2">
               <label className="text-lg font-medium">Role</label>
               <select
@@ -87,6 +114,7 @@ const EditUserr = () => {
               </select>
             </div>
 
+            {/* الهاتف */}
             <div className="flex flex-col space-y-2">
               <label className="text-lg font-medium">Phone</label>
               <input
@@ -99,6 +127,7 @@ const EditUserr = () => {
               />
             </div>
 
+            {/* العنوان */}
             <div className="flex flex-col space-y-2">
               <label className="text-lg font-medium">Address</label>
               <input
@@ -111,6 +140,7 @@ const EditUserr = () => {
               />
             </div>
 
+            {/* صورة */}
             <div className="flex flex-col space-y-2">
               <label className="text-lg font-medium">Image URL</label>
               <input

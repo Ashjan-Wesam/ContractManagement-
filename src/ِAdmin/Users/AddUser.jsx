@@ -12,26 +12,46 @@ const AddUser = () => {
     address: "",
     img: "",
   });
-
+  const [error, setError] = useState(null);  // حالة لإظهار الأخطاء
   const navigate = useNavigate();
 
-  const addUser = () => {
+  const addUser = (e) => {
+    e.preventDefault(); // منع إعادة تحميل الصفحة
+
+    // التأكد من أن جميع الحقول مليئة
+    if (!newUser.name || !newUser.email || !newUser.password || !newUser.role || !newUser.phone || !newUser.address) {
+      setError("Please fill in all the fields");
+      return;
+    }
+
     fetch("http://127.0.0.1:8000/api/users", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(newUser),
     })
       .then((response) => response.json())
-      .then(() => {
-        navigate("/admin");
+      .then((data) => {
+        console.log("Response from API:", data);
+        if (data.status === 201) {
+          navigate("/admin");  // الانتقال بعد إضافة المستخدم
+        } else {
+          setError(data.message || "Failed to add user. Please check the inputs.");
+        }
       })
-      .catch((error) => console.error("Error adding user:", error));
+      .catch((error) => {
+        console.error("Error adding user:", error);
+        setError(`An error occurred: ${error.message || error}`);
+      });
   };
 
   return (
     <div style={{ paddingTop: "90px" }} className="add-user-container">
       <div className="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md">
         <h2 className="text-2xl font-bold text-center mb-4 text-blue-600 add-user-title">Add New User</h2>
+
+        {error && <p className="text-red-500 text-center mb-4">{error}</p>}  {/* عرض الرسائل الخطأ */}
 
         <form onSubmit={addUser} className="space-y-6">
           <div className="grid grid-cols-2 gap-4 add-user-grid">
@@ -131,7 +151,6 @@ const AddUser = () => {
       </div>
     </div>
   );
-
 };
 
 export default AddUser;

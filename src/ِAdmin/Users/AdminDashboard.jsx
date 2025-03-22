@@ -5,12 +5,19 @@ import '../Sidecbar.css'; // تعديل هنا
 const AdminDashboard = () => {
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
-
   useEffect(() => {
     fetch("http://127.0.0.1:8000/api/users")
-      .then((response) => response.json())
-      .then((data) => setUsers(data.users));
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data); // افحص البيانات هنا
+      setUsers(data.users); 
+    })
+  
+      .catch((error) => {
+        console.error("Error fetching users:", error);
+      });
   }, []);
+  
 
   const handleDelete = (userId) => {
     if (window.confirm("Are you sure you want to delete this user?")) {
@@ -51,22 +58,23 @@ const AdminDashboard = () => {
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
-            <tr key={user.id}>
-              <td>{user.name}</td>
-              <td>{user.email}</td>
-              <td>{user.role}</td>
-              <td>
-                <button className="action-btn edit-btn" onClick={() => navigate(`/admin9/${user.id}`)}>
-                  Edit
-                </button>
-                <button className="action-btn delete-btn" onClick={() => handleDelete(user.id)}>
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
+  {users.map((user) => (
+    <tr key={user.id}>
+      <td>{user.name}</td>
+      <td>{user.email}</td>
+      <td>{user.role}</td>
+      <td>
+        <button className="action-btn edit-btn" onClick={() => navigate(`/admin9/${user.id}`)}>
+          Edit
+        </button>
+        <button className="action-btn delete-btn" onClick={() => handleDelete(user.id)}>
+          Delete
+        </button>
+      </td>
+    </tr>
+  ))}
+</tbody>
+
       </table>
     </div>
   );
