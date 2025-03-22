@@ -54,14 +54,16 @@ const Header = () => {
                         <Link className="nav-link" to="/contact">Contact Us</Link>
                       </li>
                       <li className="nav-item">
-                        <Link className="nav-link" to="/device">Subscriptions</Link>
+                        <Link className="nav-link" to="/device">Devices</Link>
                       </li>
                     </ul>
                     <div className="sign_btn">
                       {}
                       {user ? (
                         <div className="user-info">
-                          <span className="user-name">{user.name}</span>
+                        <Link to="/profile" style={{backgroundColor:"white",color:"black"}}>
+        <span className="user-name">{user.name}</span>
+      </Link>
                           {user.img && (
                             <img
                               src={user.img}

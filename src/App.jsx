@@ -8,6 +8,10 @@ import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Profile from "./Pages/Profile";
+import Contact from "./Pages/Contact";
+import About from "./Pages/About";
+
+
 import EditUser from "./Pages/EditUser";
 import Contracts from "./Pages/Contracts";
 import AllContract from "./Pages/AllContract";
@@ -46,8 +50,12 @@ function Layout() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/profile/editProfile" element={<EditUser />} />
             <Route path="/contracts" element={<Contracts />} />
-            <Route path="/allContracts" element={<AllContract />} />
+            <Route path="/profile/allContracts" element={<AllContract />} />
             <Route path="/device" element={<Device />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/about" element={<About />} />
+
+
             <Route path="/device/:id" element={<DeviceDetails />} />
 
             {/* صفحات الأدمن */}
