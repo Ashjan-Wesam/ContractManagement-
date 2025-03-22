@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext"; 
+import Swal from "sweetalert2"; 
 import "../assets/css/DeviceDetails.css";
 
 function DeviceDetails() {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const { user } = useAuth();
   const [device, setDevice] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
   const [formData, setFormData] = useState({
@@ -54,21 +58,26 @@ function DeviceDetails() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Sending contract request:", {
-        user_id: 1,
-        device_id: id,
-        start_date: formData.start_date,
-        end_date: formData.end_date,
-        status: "pending",
+
+    if (!user) {
+      Swal.fire({
+        icon: "warning",
+        title: "Not Logged In",
+        text: "You need to log in to rent a device.",
+        confirmButtonText: "Go to Login",
+      }).then(() => {
+        navigate("/login");
       });
-      
+      return;
+    }
+
     fetch("http://127.0.0.1:8000/api/contracts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        user_id: 1,
+        user_id: user.id,
         device_id: id,
         start_date: formData.start_date,
         end_date: formData.end_date,
@@ -77,9 +86,13 @@ function DeviceDetails() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("Contract request submitted:", data);
         setShowPopup(false);
-        alert("Your rental request has been sent to the admin.");
+        Swal.fire({
+          icon: "success",
+          title: "Request Sent!",
+          text: "Your rental request has been sent to the admin.",
+          confirmButtonText: "OK",
+        });
       })
       .catch((err) => console.error("Error submitting contract request:", err));
   };
@@ -93,8 +106,14 @@ function DeviceDetails() {
       <p className="device-category">Category: {device.category?.name || "Unknown"}</p>
       <p className="device-description">Description: {device.description}</p>
       <p className="device-price">Price per Day: ${device.price}</p>
-      <p className="device-status">Status: {device.availability_status === "available" ? "Available" : "Out of Stock"}</p>
-      <button className="rent-button" onClick={() => setShowPopup(true)} disabled={device.availability_status !== "available"}>
+      <p className="device-status">
+        Status: {device.availability_status === "available" ? "Available" : "Out of Stock"}
+      </p>
+      <button
+        className="rent-button"
+        onClick={() => setShowPopup(true)}
+        disabled={device.availability_status !== "available"}
+      >
         Rent Now
       </button>
 
@@ -106,7 +125,6 @@ function DeviceDetails() {
               <input type="text" name="name" placeholder="Your Name" onChange={handleInputChange} required />
               <input type="email" name="email" placeholder="Your Email" onChange={handleInputChange} required />
               <input type="text" name="address" placeholder="Your Address" onChange={handleInputChange} required />
-
               <input
                 type="date"
                 name="start_date"
@@ -114,7 +132,6 @@ function DeviceDetails() {
                 onChange={handleInputChange}
                 required
               />
-
               <input
                 type="date"
                 name="end_date"
