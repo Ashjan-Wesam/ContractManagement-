@@ -79,6 +79,7 @@ function Device() {
           <div className="device-grid">
             {filteredDevices.map((device) => (
               <div key={device.id} className="device-card">
+               <img src={`/images/${device.img}`} alt={device.name} className="device-image" />
                 <h3 className="device-title">{device.name}</h3>
                 <p className="device-category">{device.category?.name || "Unknown Category"}</p>
                 <p className="device-price">${device.price}</p>
