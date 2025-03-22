@@ -1,6 +1,8 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types"; // ✅ إضافة مكتبة prop-types
 import axios from "axios";
+import Swal from 'sweetalert2';
+
 
 const AuthContext = createContext();
 
@@ -29,10 +31,10 @@ export const AuthProvider = ({ children }) => {
       await axios.post("http://127.0.0.1:8000/api/register", userData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-      alert("Registration successful! Please login.");
+      // alert("Registration successful! Please login.");
     } catch (error) {
       console.error("Registration error:", error.response?.data);
-      alert(error.response?.data.message || "Registration failed");
+      // alert(error.response?.data.message || "Registration failed");
     }
   };
 
@@ -47,7 +49,7 @@ export const AuthProvider = ({ children }) => {
       // تحقق من أن الـ user والدور (role) موجودين في البيانات المستلمة
       if (!user || !user.role) {
         console.error("🚨 Role is missing in user data:", user);
-        alert("User role is missing.");
+        // alert("User role is missing.");
         return;
       }
 
@@ -59,12 +61,18 @@ export const AuthProvider = ({ children }) => {
 
       console.log("✅ Extracted user:", user);
       console.log("✅ Extracted role:", user.role);
+ Swal.fire({
+  icon: 'success',
+  title: 'Login Successful!',
+  text: 'You have logged in successfully.',
+  confirmButtonText: 'OK',
+});
 
       // أرجع الـ user ليتم استخدامه في Login.jsx
       return user;
     } catch (error) {
       console.error("Login error:", error.response?.data || error.message);
-      alert(error.response?.data?.message || "Login failed");
+      // alert(error.response?.data?.message || "Login failed");
     }
   };
   

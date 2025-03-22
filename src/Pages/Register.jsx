@@ -3,8 +3,11 @@
 import { useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import "../assets/css/reg.css"; 
+
 
 const RegisterPage = () => {
+  
   const { register } = useAuth();
   const navigate = useNavigate();
 
@@ -70,7 +73,7 @@ const RegisterPage = () => {
 
   return (
     <div className="container mt-5">
-      <div className="card shadow p-4 mx-auto" style={{ maxWidth: "500px" }}>
+      <div className="card shadow p-4 mx-auto" style={{ maxWidth: "500px"}}>
         <h2 className="text-center mb-4">Register</h2>
         <form onSubmit={handleSubmit}>
           {["name", "email", "phone", "address"].map((field) => (
@@ -112,9 +115,17 @@ const RegisterPage = () => {
               <img src={preview} alt="Preview" className="img-thumbnail" style={{ width: "150px", height: "150px", objectFit: "cover" }} />
             </div>
           )}
+<button
+  type="submit"
+  className="custom-btn w-100"
+>
 
-          <button type="submit" className="btn btn-primary w-100">Register</button>
-        </form>
+
+            Register
+          </button>        </form>
+          <div className="text-center">
+          <p>Already have an account? <a href="/login" style={{ color: "#007bff", textDecoration: "none" }}>Login here</a></p>
+        </div>
       </div>
     </div>
   );

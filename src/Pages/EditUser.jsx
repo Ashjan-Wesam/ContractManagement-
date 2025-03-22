@@ -1,10 +1,52 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import Swal from "sweetalert2";
+
 import "../assets/css/userprofile.css";
 
 export default function EditUser() {
   const [user, setUser] = useState(null);
   const [errors, setErrors] = useState({});
+  const { logout } = useAuth(); // Import logout function from AuthContext
+
+  const handleDelete = () => {
+    if (!user) return;
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://127.0.0.1:8000/api/users/${user.id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem("token")}`,
+          },
+        })
+          .then(async (response) => {
+            if (response.ok) {
+              Swal.fire("Deleted!", "Your account has been deleted.", "success");
+              logout();
+            } else {
+              const data = await response.json();
+              Swal.fire("Error!", data.message || "Failed to delete account.", "error");
+            }
+          })
+          .catch((error) => {
+            console.error("Fetch error:", error);
+            Swal.fire("Error!", "Something went wrong.", "error");
+          });
+      }
+    });
+  };
+
   const [formData, setFormData] = useState({
     name: "",
     address: "",
@@ -159,7 +201,9 @@ export default function EditUser() {
 
           <div className="mt-4 d-flex justify-content-between">
             <button className="btn btn-success px-4 fw-semibold" onClick={handleSave}>Save</button>
-            <button className="btn btn-danger px-4 fw-semibold">Delete</button>
+            <button className="btn btn-danger px-4 fw-semibold" onClick={handleDelete}>
+  Delete
+</button>
           </div>
         </div>
 
