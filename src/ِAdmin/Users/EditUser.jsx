@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import '../Admin.css';
 
-const EditUser = () => {
+const EditUserr = () => {
   const [editedUser, setEditedUser] = useState({
     name: "",
     email: "",
@@ -135,4 +135,4 @@ const EditUser = () => {
   );
 };
 
-export default EditUser;
+export default EditUserr;

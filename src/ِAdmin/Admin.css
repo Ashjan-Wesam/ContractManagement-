@@ -24,7 +24,7 @@ a {
 }
 
 a:hover {
-  background-color: #4b5563; /* تغيير اللون عند المرور فوق الرابط */
+  /* background-color: #4b5563; */
 }
 
 /* تنسيق الروابط القائمة في الـ Navbar */
@@ -175,17 +175,17 @@ div > button {
 }
 
 div > button:hover {
-  background-color: #11e697;
+  /* background-color: #11e697; */
 }
 
 div > a {
-  background-color: #11e697;
+  /* background-color: #11e697; */
   color: white;
   text-decoration: none;
 }
 
 div > a:hover {
-  background-color: #11e697;
+  /* background-color: #11e697; */
 }
 
 /* Responsive design */

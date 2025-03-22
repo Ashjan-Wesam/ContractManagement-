@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import '../Admin.css';
 
 const ContractsList = () => {
   const [contracts, setContracts] = useState([]);
