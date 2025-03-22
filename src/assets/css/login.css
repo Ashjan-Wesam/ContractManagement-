@@ -1,0 +1,127 @@
+
+.login-container {
+    max-width: 400px;
+    background: linear-gradient(45deg, #ffffff, #e0f7fa);
+    border-radius: 15px;
+    padding: 30px;
+    border: 3px solid #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 20px;
+    margin-left: 40%;
+    transition: all 0.3s ease-in-out;
+}
+
+
+
+.login-container:hover {
+    transform: translateY(-10px);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 15px 25px;
+}
+
+/* العنوان */
+.login-heading {
+    text-align: center;
+    font-weight: bold;
+    font-size: 32px;
+    color: #2d2c2c;
+    margin-bottom: 20px;
+}
+
+/* الحقول */
+.login-input {
+    width: 100%;
+    background: white;
+    border: 2px solid #b0bec5;
+    padding: 12px;
+    border-radius: 25px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
+}
+
+.login-input:focus {
+    outline: none;
+    border: 2px solid #2d2c2c;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* زر تسجيل الدخول */
+.login-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #2d2c2c;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.login-button:disabled {
+    background-color: #ccc;
+}
+
+.login-button:hover:not(:disabled) {
+    background-color: #2d2c2c;
+}
+
+/* رابط استعادة كلمة المرور */
+.forgot-password {
+    display: block;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.forgot-password a {
+    color: #2d2c2c;
+    text-decoration: none;
+}
+
+/* حسابات التواصل الاجتماعي */
+.social-account-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.social-account-container .title {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.social-accounts {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.social-button {
+    background-color: #ffffff;
+    border: 2px solid #ddd;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.social-button:hover {
+    background-color: #f0f0f0;
+}
+
+.social-button svg {
+    width: 24px;
+    height: 24px;
+    fill: #555;
+}
+
+/* اتفاقية المستخدم */
+.agreement {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.agreement a {
+    color: #2d2c2c;
+    text-decoration: none;
+}
