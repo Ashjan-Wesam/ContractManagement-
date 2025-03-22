@@ -29,12 +29,12 @@ const AddUser = () => {
   };
 
   return (
-    <div style={{ paddingTop: "90px" }}>
+    <div style={{ paddingTop: "90px" }} className="add-user-container">
       <div className="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold text-center mb-4 text-blue-600">Add New User</h2>
+        <h2 className="text-2xl font-bold text-center mb-4 text-blue-600 add-user-title">Add New User</h2>
 
         <form onSubmit={addUser} className="space-y-6">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-4 add-user-grid">
             <div className="flex flex-col space-y-2">
               <label className="text-lg font-medium">Name</label>
               <input
@@ -42,7 +42,7 @@ const AddUser = () => {
                 value={newUser.name}
                 onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
                 placeholder="Enter Name"
-                className="w-full p-4 border-2 border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full p-4 border-2 border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 add-user-input"
                 required
               />
             </div>
@@ -54,7 +54,7 @@ const AddUser = () => {
                 value={newUser.email}
                 onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
                 placeholder="Enter Email"
-                className="w-full p-4 border-2 border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full p-4 border-2 border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 add-user-input"
                 required
               />
             </div>
@@ -66,7 +66,7 @@ const AddUser = () => {
                 value={newUser.password}
                 onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
                 placeholder="Enter Password"
-                className="w-full p-4 border-2 border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full p-4 border-2 border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 add-user-input"
                 required
               />
             </div>
@@ -76,7 +76,7 @@ const AddUser = () => {
               <select
                 value={newUser.role}
                 onChange={(e) => setNewUser({ ...newUser, role: e.target.value })}
-                className="w-full p-4 border-2 border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full p-4 border-2 border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 add-user-select"
                 required
               >
                 <option value="">Select Role</option>
@@ -92,7 +92,7 @@ const AddUser = () => {
                 value={newUser.phone}
                 onChange={(e) => setNewUser({ ...newUser, phone: e.target.value })}
                 placeholder="Enter Phone"
-                className="w-full p-4 border-2 border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full p-4 border-2 border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 add-user-input"
                 required
               />
             </div>
@@ -104,7 +104,7 @@ const AddUser = () => {
                 value={newUser.address}
                 onChange={(e) => setNewUser({ ...newUser, address: e.target.value })}
                 placeholder="Enter Address"
-                className="w-full p-4 border-2 border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full p-4 border-2 border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 add-user-input"
                 required
               />
             </div>
@@ -116,14 +116,14 @@ const AddUser = () => {
                 value={newUser.img}
                 onChange={(e) => setNewUser({ ...newUser, img: e.target.value })}
                 placeholder="Enter Image URL"
-                className="w-full p-4 border-2 border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full p-4 border-2 border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 add-user-input"
               />
             </div>
           </div>
 
           <button
             type="submit"
-            className="w-full py-4 bg-blue-600 text-white rounded-md shadow-md hover:bg-blue-700 transition duration-200"
+            className="w-full py-4 bg-blue-600 text-white rounded-md shadow-md hover:bg-blue-700 transition duration-200 add-user-button"
           >
             Add User
           </button>
@@ -131,6 +131,7 @@ const AddUser = () => {
       </div>
     </div>
   );
+
 };
 
 export default AddUser;

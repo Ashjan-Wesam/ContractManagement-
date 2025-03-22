@@ -1,0 +1,334 @@
+/* Sidebar Styles */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #2d2c2c;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .sidebar-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .sidebar-menu {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+  }
+  
+  .sidebar-menu li {
+    width: 100%;
+  }
+  
+  .sidebar-link {
+    display: block;
+    padding: 12px 20px;
+    color: #2bcc91;
+    text-decoration: none;
+    font-size: 16px;
+    transition: 0.3s;
+  }
+  
+  .sidebar-link:hover {
+    background-color: #2bcc91;
+    color: white;
+  }
+  
+  /* Logout Button */
+  .logou-btn {
+    margin-top: auto;
+    padding: 10px 20px;
+    background-color: #11e697;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 80%;
+    margin-bottom: 20px;
+    transition: 0.3s;
+    border-radius: 10px;
+  }
+  
+  .logou-btn:hover {
+    background-color: #229c6f;
+  }
+  
+  /* Admin Dashboard Styles */
+  .admin-container {
+    margin-left: 270px;
+    padding: 20px;
+  }
+  
+  .admin-header {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Table Styling */
+  .admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .admin-table th {
+    background-color: #f4f4f4;
+    padding: 12px;
+    text-align: left;
+    border-bottom: 2px solid #ddd;
+  }
+  
+  .admin-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .admin-table tr:hover {
+    background-color: #f9f9f9;
+  }
+  
+  /* Buttons */
+  .action-btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .edit-btn {
+    background-color: #11e697;
+    color: white;
+    margin-right: 5px;
+  }
+  
+  .edit-btn:hover {
+    background-color: #0dbf85;
+  }
+  
+  .delete-btn {
+    background-color: red;
+    color: white;
+  }
+  
+  .delete-btn:hover {
+    background-color: darkred;
+  }
+  
+  /* Add User Button */
+  .add-user-btn {
+    background-color: #2bcc91;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: 0.3s;
+    display: inline-block;
+    margin-bottom: 15px;
+  }
+  
+  .add-user-btn:hover {
+    background-color: #2d2c2c;
+  }
+  /* Form Container */
+.add-user-container {
+    max-width: 800px;
+    margin: auto;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Title */
+.add-user-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #2563eb;
+    margin-bottom: 20px;
+}
+
+/* Form Grid */
+.add-user-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+/* Input Fields */
+.add-user-input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #d1d5db;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.add-user-input:focus {
+    border-color: #2563eb;
+    outline: none;
+}
+
+/* Select Dropdown */
+.add-user-select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #d1d5db;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.add-user-select:focus {
+    border-color: #2563eb;
+    outline: none;
+}
+
+/* Submit Button */
+.add-user-button {
+    width: 100%;
+    padding: 14px;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-user-button:hover {
+    background-color: #1d4ed8;
+}
+.contracts-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 90px;
+}
+
+.contracts-table-container {
+    max-width: 80%;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contracts-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.contracts-table th, .contracts-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.contracts-table th {
+    background-color: #cce4ff;
+    font-weight: bold;
+}
+
+.contract-status {
+    padding: 6px 12px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
+}
+
+.contract-status:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+/* تنسيق عام للصفحة */
+.contracts-container {
+    padding-top: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* تنسيق صندوق الجدول */
+  .contracts-box {
+    max-width: 80%;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* عنوان الصفحة */
+  .contracts-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 16px;
+    color: #007bff;
+  }
+  
+  /* تنسيق الجدول */
+  .contracts-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .contracts-table thead {
+    background: #007bff;
+    color: white;
+  }
+  
+  .contracts-table th, .contracts-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .contracts-table tbody tr:hover {
+    background: #f1f1f1;
+  }
+  
+  /* تنسيق القائمة المنسدلة */
+  .contract-status {
+    padding: 6px 12px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    background: white;
+    font-size: 14px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+  }
+  
+  .contract-status:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  

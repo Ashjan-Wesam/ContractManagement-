@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import '../Admin.css';
+import '../sidecbar.css';
 
 const ContractsList = () => {
   const [contracts, setContracts] = useState([]);
@@ -44,32 +44,32 @@ const ContractsList = () => {
   }
 
   return (
-    <div style={{ paddingTop: "90px" }}>
-      <div className="max-w-6xl mx-auto bg-white p-6 rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold text-center mb-4">Contracts Management</h2>
-
-        <table className="min-w-full border-collapse table-auto">
+    <div className="contracts-container">
+      <div className="contracts-box">
+        <h2 className="contracts-title">Contracts Management</h2>
+  
+        <table className="contracts-table">
           <thead>
-            <tr className="bg-blue-100">
-              <th className="p-4 text-left">User Name</th>
-              <th className="p-4 text-left">Device Name</th>
-              <th className="p-4 text-left">Start Date</th>
-              <th className="p-4 text-left">End Date</th>
-              <th className="p-4 text-left">Status</th>
+            <tr>
+              <th>User Name</th>
+              <th>Device Name</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
             {contracts.map((contract) => (
-              <tr key={contract.id} className="border-b">
-                <td className="p-4">{contract.user ? contract.user.name : "N/A"}</td>
-                <td className="p-4">{contract.device ? contract.device.name : "N/A"}</td>
-                <td className="p-4">{contract.start_date}</td>
-                <td className="p-4">{contract.end_date}</td>
-                <td className="p-4">
+              <tr key={contract.id}>
+                <td>{contract.user ? contract.user.name : "N/A"}</td>
+                <td>{contract.device ? contract.device.name : "N/A"}</td>
+                <td>{contract.start_date}</td>
+                <td>{contract.end_date}</td>
+                <td>
                   <select
                     value={contract.status}
                     onChange={(e) => handleStatusChange(contract.id, e.target.value)}
-                    className="p-2 border-2 border-gray-300 rounded-md shadow-md focus:ring-2 focus:ring-blue-500"
+                    className="contract-status"
                   >
                     <option value="active">Active</option>
                     <option value="completed">Completed</option>
@@ -84,6 +84,7 @@ const ContractsList = () => {
       </div>
     </div>
   );
+  
 };
 
 export default ContractsList;
