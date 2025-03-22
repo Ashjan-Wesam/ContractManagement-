@@ -3,9 +3,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import About from "./About";
 import BestSection from "./BestSection";
 import Contact from "./Contact";
-import TwoBox from "./TwoBox";
-import Testimonial from "./Testimonial";
 import Hero from "./Hero";
+import YouTubeVideos from "./YouTubeVideos";
 
 
 function Home() {
@@ -14,10 +13,8 @@ function Home() {
    <Hero />
    <About />
    <BestSection />
+   <YouTubeVideos />
    <Contact />
-   <TwoBox />
-   <Testimonial />
-
    </>
   );
 }

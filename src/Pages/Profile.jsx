@@ -1,28 +1,52 @@
-
-import "../assets/css/userprofile.css"
+import { useEffect, useState } from "react";
+import "../assets/css/userprofile.css";
+import { Link } from "react-router-dom";
 
 export default function Profile() {
-    return (
-      <div className="container mt-4 mb-4 p-3 d-flex justify-content-center custom-padding">
+  const [user, setUser] = useState(null);
 
-      <div class="card p-4">
-      <div class=" image d-flex flex-column justify-content-center align-items-center"> 
-         <button class="btn btn-secondary"> <img src="https://i.imgur.com/wvxPV9S.png" height="100" width="100" /></button> 
-         <span class="name mt-3">Eleanor Pena</span>
-          <span class="idd">@eleanorpena</span> 
-          <div class="d-flex flex-row justify-content-center align-items-center gap-2">
-              <span class="idd1">Oxc4c16a645_b21a</span> <span><i class="fa fa-copy"></i></span> </div> 
-              <div class="d-flex flex-row justify-content-center align-items-center mt-3">
-                  <span class="number">1069 <span class="follow">Phone number</span></span> </div>
-                   <div class=" d-flex mt-2"> <button class="btn1 btn-dark">Edit Profile</button> </div>
-                    <div class="text mt-3">
-                      <span>Address </span> </div>
-                       <div class="gap-3 mt-3 icons d-flex flex-row justify-content-center align-items-center"> <span><i class="fa fa-twitter"></i></span>
-                        <span><i class="fa fa-facebook-f"></i></span> <span><i class="fa fa-instagram"></i></span> 
-                        <span><i class="fa fa-linkedin"></i></span>
-                         </div> <div class=" px-2 rounded mt-4 date "> 
-                             <span class="join">Joined May,2021</span> 
-                             </div> </div> </div>
-  </div>
-    );
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/api/users")
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.status === 200 && data.users.length > 0) {
+          setUser(data.users[1]);
+        }
+      })
+      .catch((error) => console.error("Error ", error));
+  }, []);
+
+  if (!user) {
+    return <div>Loading...</div>;
   }
+
+  return (
+    <div className="container mt-4 mb-4 p-3 d-flex justify-content-center custom-padding">
+      <div className="card p-4">
+        <div className="image d-flex flex-column justify-content-center align-items-center">
+          <button className="btn btn-secondary">
+            <img src={user.img || "https://static.vecteezy.com/system/resources/previews/021/548/095/original/default-profile-picture-avatar-user-avatar-icon-person-icon-head-icon-profile-picture-icons-default-anonymous-user-male-and-female-businessman-photo-placeholder-social-network-avatar-portrait-free-vector.jpg"} height="100" width="100" alt="Profile" style={{borderRadius:"100%"}} />
+          </button>
+          <span className="name mt-3">{user.name}</span>
+          <span className="idd">{user.email}</span>
+          <div className="d-flex flex-row justify-content-center align-items-center gap-2">
+            <span className="idd1">ID: {user.id}</span>
+          </div>
+          <div className="d-flex flex-row justify-content-center align-items-center mt-3">
+            <span className="number">{user.phone} <span className="follow">Phone number</span></span>
+          </div>
+          <div className="d-flex mt-2">
+            <Link to={'editProfile'} className="btn1 btn-dark">Edit Profile</Link>
+          </div>
+          <div className="text mt-3">
+            <span>Address: {user.address}</span>
+          </div>
+         
+          <div className="px-2 rounded mt-4 date">
+            <span className="join">Joined {new Date(user.created_at).toLocaleDateString()}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
