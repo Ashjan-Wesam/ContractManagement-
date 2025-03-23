@@ -29,6 +29,7 @@ import EditDevice from "./ِAdmin/Devices/EditDevice";
 import AddUser from "./ِAdmin/Users/AddUser";
 // import EditAdminUserr from "./ِAdmin/Users/EditUser";
 import EditUserr from "./ِAdmin/Users/EditUser";
+import Dashboard from "./ِAdmin/Dashboard";
 
 function Layout() {
   const location = useLocation();
@@ -66,7 +67,7 @@ function Layout() {
             <Route path="/admin4/:id" element={<EditCategory />} />
             <Route path="/admin5" element={<ContractsList />} />
             <Route path="/admin6" element={<AddDevice />} />
-            <Route path="/admin7/:id" element={<EditDevice />} />
+            <Route path="/admin10" element={<Dashboard />} />
 
             <Route path="/admin8" element={<AddUser />} />
             <Route path="/admin9/:id" element={<EditUserr />} />

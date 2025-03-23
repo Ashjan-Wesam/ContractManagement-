@@ -1,73 +1,93 @@
+import { useEffect, useState } from "react";
 import "./dashboard.css";
 
 const Dashboard = () => {
+  const [categories, setCategories] = useState([]);
+  const [contracts, setContracts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // دالة لجلب البيانات من API
+  const fetchData = async () => {
+    try {
+      // جلب الفئات
+      const categoryResponse = await fetch("http://127.0.0.1:8000/api/categories");
+      const categoryData = await categoryResponse.json();
+
+      // جلب العقود
+      const contractResponse = await fetch("http://127.0.0.1:8000/api/contracts");
+      const contractData = await contractResponse.json();
+
+      setCategories(categoryData.categorys);
+      setContracts(contractData.contracts);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setLoading(false);
+    }
+  };
+
+  // تشغيل جلب البيانات عند تحميل الصفحة
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <div className="dashboard-container">
-      {/* Sidebar */}
-    
-
-      {/* محتوى الداشبورد */}
       <div className="dashboard-content">
         <h2 className="dashboard-title">Dashboard Overview</h2>
 
-        {/* الكروت */}
-        <div className="dashboard-cards">
-          <div className="dashboard-card ">
-            <h5>Total Users</h5>
-            <p>1,245</p>
-          </div>
-          <div className="dashboard-card ">
-            <h5>Active Devices</h5>
-            <p>320</p>
-          </div>
-          <div className="dashboard-card ">
-            <h5>Categories</h5>
-            <p>15</p>
-          </div>
-          <div className="dashboard-card ">
-            <h5>Pending Contracts</h5>
-            <p>12</p>
-          </div>
-        </div>
+        {loading ? (
+          <p>Loading data...</p>
+        ) : (
+          <>
+            {/* الكروت */}
+            <div className="dashboard-cards">
+              <div className="dashboard-card">
+                <h5>Total Categories</h5>
+                <p>{categories.length}</p>
+              </div>
+              <div className="dashboard-card">
+                <h5>Pending Contracts</h5>
+                <p>{contracts.filter(contract => contract.status === "pending").length}</p>
+              </div>
+              <div className="dashboard-card">
+                <h5>Active Contracts</h5>
+                <p>{contracts.filter(contract => contract.status === "active").length}</p>
+              </div>
+              <div className="dashboard-card">
+                <h5>Completed Contracts</h5>
+                <p>{contracts.filter(contract => contract.status === "completed").length}</p>
+              </div>
+            </div>
 
-        {/* جدول آخر الاستجارات */}
-        <div className="latest-rentals">
-          <h3>Latest Rentals</h3>
-          <table>
-            <thead>
-              <tr>
-                <th>Rental ID</th>
-                <th>User</th>
-                <th>Item</th>
-                <th>Date</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>#001</td>
-                <td>John Doe</td>
-                <td>Laptop</td>
-                <td>March 20, 2025</td>
-                <td>Approved</td>
-              </tr>
-              <tr>
-                <td>#002</td>
-                <td>Jane Smith</td>
-                <td>Camera</td>
-                <td>March 19, 2025</td>
-                <td>Pending</td>
-              </tr>
-              <tr>
-                <td>#003</td>
-                <td>Ali Hassan</td>
-                <td>Projector</td>
-                <td>March 18, 2025</td>
-                <td>Rejected</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+            {/* جدول العقود الأخيرة */}
+            <div className="latest-rentals">
+              <h3>Latest Rentals</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Rental ID</th>
+                    <th>User</th>
+                    <th>Device</th>
+                    <th>Start Date</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {contracts.slice(0, 5).map((contract) => (
+                    <tr key={contract.id}>
+                      <td>#{contract.id}</td>
+                      <td>{contract.user?.name || "N/A"}</td>
+                      <td>{contract.device?.name || "N/A"}</td>
+                      <td>{new Date(contract.start_date).toLocaleDateString()}</td>
+                      <td>{contract.status}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
