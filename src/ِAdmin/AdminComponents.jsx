@@ -1,28 +1,42 @@
-import { Link } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./sidecbar.css";
+import { useAuth } from "../contexts/AuthContext"; 
 
 function Sidebar() {
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate("/login"); 
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
+  };
+
+  const menuItems = [
+    { path: "/admin10", label: "Dashboard" },
+    { path: "/admin", label: "Users" },
+    { path: "/admin1", label: "Devices" },
+    { path: "/admin2", label: "Categories" },
+    { path: "/admin5", label: "Contracts" },
+  ];
+
   return (
     <div className="sidebar">
       <h2 className="sidebar-title">Admin Dashboard</h2>
+      <span className="user-name">{user ? user.name : "Guest"}</span>
       <ul className="sidebar-menu">
-        <li>
-          <Link to="/admin10" className="sidebar-link">Dashboard</Link>
-        </li>
-        <li>
-          <Link to="/admin" className="sidebar-link">Users</Link>
-        </li>
-        <li>
-          <Link to="/admin1" className="sidebar-link">Devices</Link>
-        </li>
-        <li>
-          <Link to="/admin2" className="sidebar-link">Categories</Link>
-        </li>
-        <li>
-          <Link to="/admin5" className="sidebar-link">Contracts</Link>
-        </li>
+        {menuItems.map((item, index) => (
+          <li key={index}>
+            <NavLink to={item.path} className="sidebar-link" activeClassName="active">
+              {item.label}
+            </NavLink>
+          </li>
+        ))}
       </ul>
-      <button className="logou-btn">Logout</button>
+      <button onClick={handleLogout} className="logout-btn">Logout</button>
     </div>
   );
 }
