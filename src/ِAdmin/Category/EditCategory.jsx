@@ -1,7 +1,7 @@
 import '../Admin.css';
-
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import Sidebar from '../AdminComponents';
 
 const EditCategory = () => {
   const { id } = useParams();
@@ -11,7 +11,8 @@ const EditCategory = () => {
   useEffect(() => {
     fetch(`http://127.0.0.1:8000/api/categories/${id}`)
       .then(res => res.json())
-      .then(data => setName(data.category.name));
+      .then(data => setName(data.category.name))
+      .catch(err => console.error("Error fetching category:", err));
   }, [id]);
 
   const handleUpdateCategory = async (e) => {
@@ -25,12 +26,23 @@ const EditCategory = () => {
   };
 
   return (
-    <div style={{ paddingTop: "90px" }}>
-      <h2>Edit Category</h2>
-      <form onSubmit={handleUpdateCategory}>
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
-        <button type="submit">Update</button>
-      </form>
+    <div className="admin-content">
+      <Sidebar />
+      <div className="edit-category-container">
+        <div className="edit-category-box">
+          <h2 className="text-2xl font-bold text-center mb-4">Edit Category</h2>
+          <form onSubmit={handleUpdateCategory}>
+            <input 
+              type="text" 
+              className="edit-category-input" 
+              value={name} 
+              onChange={(e) => setName(e.target.value)} 
+              required 
+            />
+            <button type="submit" className="edit-category-button">Update</button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };

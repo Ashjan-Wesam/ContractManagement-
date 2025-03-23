@@ -1,1 +1,154 @@
 
+.admin-content {
+    display: flex;
+}
+
+.categories-container {
+    margin-left: 260px; 
+    padding: 20px;
+    width: calc(100% - 260px);
+}
+
+/* Layout container for sidebar and add category form */
+.admin-content {
+    display: flex;
+}
+
+/* Adjust form container to be next to the sidebar */
+.add-category-container {
+    margin-left: 260px; /* Same as the sidebar width */
+    padding: 20px;
+    width: calc(100% - 260px);
+}
+
+/* Form Styling */
+.add-category-box {
+    max-width: 600px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin: auto;
+}
+
+/* Input Styling */
+.add-category-input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    transition: border-color 0.3s ease;
+}
+
+.add-category-input:focus {
+    border-color: #2563eb;
+    outline: none;
+}
+
+/* Button Styling */
+.add-category-button {
+    width: 100%;
+    padding: 14px;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-category-button:hover {
+    background-color: #1d4ed8;
+}
+/* Layout container for sidebar and edit category form */
+.admin-content {
+    display: flex;
+}
+
+/* Adjust form container to be next to the sidebar */
+.edit-category-container {
+    margin-left: 260px; /* Same as the sidebar width */
+    padding: 20px;
+    width: calc(100% - 260px);
+}
+
+/* Form Styling */
+.edit-category-box {
+    max-width: 600px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin: auto;
+}
+
+/* Input Styling */
+.edit-category-input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    transition: border-color 0.3s ease;
+}
+
+.edit-category-input:focus {
+    border-color: #2563eb;
+    outline: none;
+}
+
+/* Button Styling */
+.edit-category-button {
+    width: 100%;
+    padding: 14px;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.edit-category-button:hover {
+    background-color: #1d4ed8;
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .pagination-button {
+    background-color: #2bcc91;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+  
+  .pagination-button:hover {
+    background-color: #24a678;
+  }
+  
+  .pagination-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .pagination-info {
+    font-weight: bold;
+    color: #2bcc91;
+  }
+  

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import '../Admin.css';
-
+import "../Admin.css";
 
 const EditDevice = () => {
   const { id } = useParams();
@@ -43,102 +42,160 @@ const EditDevice = () => {
   };
 
   return (
-    <div style={{ paddingTop: "90px" }}>
-  <h2 className="text-2xl font-bold mb-6 text-center text-blue-600">Edit Device</h2>
-  {device ? (
-    <form onSubmit={handleUpdate} className="space-y-6">
-      <div className="flex flex-col space-y-2">
-        <label className="text-lg font-medium">Device Name</label>
-        <input
-          type="text"
-          name="name"
-          value={updatedDevice.name}
-          onChange={handleInputChange}
-          placeholder="Device Name"
-          className="w-full p-4 border-2 border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          required
-        />
-      </div>
+    <div className="admin-content">
+      <div className="form-container" style={{ maxWidth: "600px", margin: "auto", padding: "20px" }}>
+        <h2 style={{ textAlign: "center", color: "#333", marginBottom: "20px" }}>Edit Device</h2>
 
-      <div className="flex flex-col space-y-2">
-        <label className="text-lg font-medium">Category</label>
-        <select
-          name="category_id"
-          value={updatedDevice.category_id || ""}
-          onChange={handleInputChange}
-          className="w-full p-4 border-2 border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          required
-        >
-          <option value="">Select Category</option>
-          {categories.map((category) => (
-            <option key={category.id} value={category.id}>{category.name}</option>
-          ))}
-        </select>
-      </div>
+        {device ? (
+          <form onSubmit={handleUpdate}>
+            {/* Device Name */}
+            <div className="form-group">
+              <label style={{ fontSize: "1.1rem", fontWeight: "500", marginBottom: "8px" }}>Device Name</label>
+              <input
+                type="text"
+                name="name"
+                value={updatedDevice.name}
+                onChange={handleInputChange}
+                placeholder="Enter Device Name"
+                style={{
+                  width: "100%",
+                  padding: "10px",
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                  marginBottom: "15px"
+                }}
+                required
+              />
+            </div>
 
-      <div className="flex flex-col space-y-2">
-        <label className="text-lg font-medium">Description</label>
-        <textarea
-          name="description"
-          value={updatedDevice.description}
-          onChange={handleInputChange}
-          placeholder="Device Description"
-          className="w-full p-4 border-2 border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          required
-        />
-      </div>
+            {/* Category */}
+            <div className="form-group">
+              <label style={{ fontSize: "1.1rem", fontWeight: "500", marginBottom: "8px" }}>Category</label>
+              <select
+                name="category_id"
+                value={updatedDevice.category_id}
+                onChange={handleInputChange}
+                style={{
+                  width: "100%",
+                  padding: "10px",
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                  marginBottom: "15px"
+                }}
+                required
+              >
+                <option value="">Select Category</option>
+                {categories.map((category) => (
+                  <option key={category.id} value={category.id}>
+                    {category.name}
+                  </option>
+                ))}
+              </select>
+            </div>
 
-      <div className="flex flex-col space-y-2">
-        <label className="text-lg font-medium">Price</label>
-        <input
-          type="number"
-          name="price"
-          value={updatedDevice.price}
-          onChange={handleInputChange}
-          placeholder="Price"
-          className="w-full p-4 border-2 border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          required
-        />
-      </div>
+            {/* Description */}
+            <div className="form-group">
+              <label style={{ fontSize: "1.1rem", fontWeight: "500", marginBottom: "8px" }}>Description</label>
+              <textarea
+                name="description"
+                value={updatedDevice.description}
+                onChange={handleInputChange}
+                placeholder="Enter Device Description"
+                style={{
+                  width: "100%",
+                  padding: "10px",
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                  marginBottom: "15px",
+                  height: "100px"
+                }}
+                required
+              />
+            </div>
 
-      <div className="flex flex-col space-y-2">
-        <label className="text-lg font-medium">Availability Status</label>
-        <select
-          name="availability_status"
-          value={updatedDevice.availability_status}
-          onChange={handleInputChange}
-          className="w-full p-4 border-2 border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          required
-        >
-          <option value="">Select Availability Status</option>
-          <option value="available">Available</option>
-          <option value="out_of_stock">Out of Stock</option>
-        </select>
-      </div>
+            {/* Price */}
+            <div className="form-group">
+              <label style={{ fontSize: "1.1rem", fontWeight: "500", marginBottom: "8px" }}>Price</label>
+              <input
+                type="number"
+                name="price"
+                value={updatedDevice.price}
+                onChange={handleInputChange}
+                placeholder="Enter Price"
+                style={{
+                  width: "100%",
+                  padding: "10px",
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                  marginBottom: "15px"
+                }}
+                required
+              />
+            </div>
 
-      <div className="flex flex-col space-y-2">
-        <label className="text-lg font-medium">Image URL</label>
-        <input
-          type="text"
-          name="img"
-          value={updatedDevice.img}
-          onChange={handleInputChange}
-          placeholder="Image URL"
-          className="w-full p-4 border-2 border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
+            {/* Availability Status */}
+            <div className="form-group">
+              <label style={{ fontSize: "1.1rem", fontWeight: "500", marginBottom: "8px" }}>Availability Status</label>
+              <select
+                name="availability_status"
+                value={updatedDevice.availability_status}
+                onChange={handleInputChange}
+                style={{
+                  width: "100%",
+                  padding: "10px",
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                  marginBottom: "15px"
+                }}
+                required
+              >
+                <option value="">Select Availability Status</option>
+                <option value="available">Available</option>
+                <option value="out_of_stock">Out of Stock</option>
+              </select>
+            </div>
 
-      <button
-        type="submit"
-        className="w-full py-4 bg-blue-600 text-white rounded-md shadow-md hover:bg-blue-700 transition duration-200"
-      >
-        Update Device
-      </button>
-    </form>
-  ) : (
-    <p>Loading...</p>
-  )}
-</div>
+            {/* Image URL */}
+            <div className="form-group">
+              <label style={{ fontSize: "1.1rem", fontWeight: "500", marginBottom: "8px" }}>Image URL</label>
+              <input
+                type="text"
+                name="img"
+                value={updatedDevice.img}
+                onChange={handleInputChange}
+                placeholder="Enter Image URL"
+                style={{
+                  width: "100%",
+                  padding: "10px",
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                  marginBottom: "20px"
+                }}
+              />
+            </div>
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              style={{
+                width: "100%",
+                padding: "12px",
+                backgroundColor: "#007BFF",
+                color: "#fff",
+                border: "none",
+                borderRadius: "4px",
+                cursor: "pointer",
+                fontSize: "1.1rem"
+              }}
+            >
+              Update Device
+            </button>
+          </form>
+        ) : (
+          <p>Loading...</p>
+        )}
+      </div>
+    </div>
   );
 };
 
