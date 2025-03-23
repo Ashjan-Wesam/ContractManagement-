@@ -32,7 +32,6 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="dashboard-container">
       <div className="dashboard-content">
         <h2 className="dashboard-title">Dashboard Overview</h2>
 
@@ -89,7 +88,6 @@ const Dashboard = () => {
           </>
         )}
       </div>
-    </div>
   );
 };
 
