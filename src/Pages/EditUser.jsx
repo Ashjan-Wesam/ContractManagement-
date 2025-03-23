@@ -8,7 +8,41 @@ import "../assets/css/userprofile.css";
 export default function EditUser() {
   const [user, setUser] = useState(null);
   const [errors, setErrors] = useState({});
-  const { logout } = useAuth(); // Import logout function from AuthContext
+  const { logout, user: loggedInUser } = useAuth(); // Retrieve logged-in user from AuthContext
+  const navigate = useNavigate();
+
+  // Fetch user data based on the logged-in user's ID
+  useEffect(() => {
+    if (!loggedInUser) {
+      // If no logged-in user, redirect or show loading
+      navigate("/login"); // Or wherever you want to redirect when no user is logged in
+      return;
+    }
+
+    fetch(`http://127.0.0.1:8000/api/users/${loggedInUser.id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.status === 200) {
+          setUser(data.user); // Assuming 'data.user' is the logged-in user's data
+          setFormData({
+            name: data.user.name || "",
+            address: data.user.address || "",
+            email: data.user.email || "",
+            phone: data.user.phone || "",
+            password: "",
+          });
+        }
+      })
+      .catch((error) => console.error("Error fetching user data: ", error));
+  }, [loggedInUser, navigate]);
+
+  const [formData, setFormData] = useState({
+    name: "",
+    address: "",
+    email: "",
+    phone: "",
+    password: "",
+  });
 
   const handleDelete = () => {
     if (!user) return;
@@ -20,7 +54,7 @@ export default function EditUser() {
       showCancelButton: true,
       confirmButtonColor: "#d33",
       cancelButtonColor: "#3085d6",
-      confirmButtonText: "Yes, delete it!"
+      confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(`http://127.0.0.1:8000/api/users/${user.id}`, {
@@ -47,43 +81,15 @@ export default function EditUser() {
     });
   };
 
-  const [formData, setFormData] = useState({
-    name: "",
-    address: "",
-    email: "",
-    phone: "",
-    password: "",
-  });
-
-  const navigate = useNavigate(); 
-
-  useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/users")
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.status === 200 && data.users.length > 0) {
-          setUser(data.users[1]);
-          setFormData({
-            name: data.users[1].name || "",
-            address: data.users[1].address || "",
-            email: data.users[1].email || "",
-            phone: data.users[1].phone || "",
-            password: "",
-          });
-        }
-      })
-      .catch((error) => console.error("Error ", error));
-  }, []);
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSave = () => {
-    setErrors({}); 
-  
+    setErrors({});
+
     fetch(`http://127.0.0.1:8000/api/users/${user.id}`, {
-      method: "PUT", 
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
@@ -92,18 +98,17 @@ export default function EditUser() {
     })
       .then(async (response) => {
         const data = await response.json();
-        console.log("API Response:", data); 
-  
         if (response.ok) {
-          navigate("/profile"); 
+          navigate("/profile");
         } else if (data.errors) {
-          setErrors(data.errors); 
+          setErrors(data.errors);
         } else {
           console.error("Error updating user:", data);
         }
       })
       .catch((error) => console.error("Fetch Error:", error));
   };
+
   if (!user) {
     return <div className="text-center mt-5">Loading...</div>;
   }
@@ -139,8 +144,7 @@ export default function EditUser() {
                 value={formData.name}
                 onChange={handleChange}
               />
-                {errors.name && <small className="text-danger">{errors.name[0]}</small>}
-
+              {errors.name && <small className="text-danger">{errors.name[0]}</small>}
             </div>
             <div className="col-md-6">
               <label className="form-label fw-semibold">Address</label>
@@ -151,8 +155,7 @@ export default function EditUser() {
                 value={formData.address}
                 onChange={handleChange}
               />
-                {errors.address && <small className="text-danger">{errors.address[0]}</small>}
-
+              {errors.address && <small className="text-danger">{errors.address[0]}</small>}
             </div>
           </div>
 
@@ -166,8 +169,7 @@ export default function EditUser() {
                 value={formData.email}
                 onChange={handleChange}
               />
-                {errors.email && <small className="text-danger">{errors.email[0]}</small>}
-
+              {errors.email && <small className="text-danger">{errors.email[0]}</small>}
             </div>
             <div className="col-md-6">
               <label className="form-label fw-semibold">Phone</label>
@@ -178,8 +180,7 @@ export default function EditUser() {
                 value={formData.phone}
                 onChange={handleChange}
               />
-                {errors.phone && <small className="text-danger">{errors.phone[0]}</small>}
-
+              {errors.phone && <small className="text-danger">{errors.phone[0]}</small>}
             </div>
           </div>
 
@@ -194,16 +195,13 @@ export default function EditUser() {
                 onChange={handleChange}
                 placeholder="Enter new password"
               />
-                {errors.password && <small className="text-danger">{errors.password[0]}</small>}
-
+              {errors.password && <small className="text-danger">{errors.password[0]}</small>}
             </div>
           </div>
 
           <div className="mt-4 d-flex justify-content-between">
             <button className="btn btn-success px-4 fw-semibold" onClick={handleSave}>Save</button>
-            <button className="btn btn-danger px-4 fw-semibold" onClick={handleDelete}>
-  Delete
-</button>
+            <button className="btn btn-danger px-4 fw-semibold" onClick={handleDelete}>Delete</button>
           </div>
         </div>
 
