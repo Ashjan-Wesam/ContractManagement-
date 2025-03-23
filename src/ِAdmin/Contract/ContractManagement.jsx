@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import '../sidecbar.css';
+import { useState, useEffect } from "react";
+import './contracts.css';
 
 const ContractsList = () => {
   const [contracts, setContracts] = useState([]);
@@ -56,44 +56,46 @@ const ContractsList = () => {
 
   return (
     <div className="contracts-container">
-      <div className="contracts-box">
-        <h2 className="contracts-title">Contracts Management</h2>
-  
-        <table className="contracts-table">
-          <thead>
-            <tr>
-              <th>User Name</th>
-              <th>Device Name</th>
-              <th>Start Date</th>
-              <th>End Date</th>
-              <th>Status</th>
+    
+
+    <div className="contracts-box">
+      <h2 className="contracts-title">Contracts Management</h2>
+
+      <table className="contracts-table">
+        <thead>
+          <tr>
+            <th>User Name</th>
+            <th>Device Name</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {contracts.map((contract) => (
+            <tr key={contract.id}>
+              <td>{contract.user ? contract.user.name : "N/A"}</td>
+              <td>{contract.device ? contract.device.name : "N/A"}</td>
+              <td>{contract.start_date}</td>
+              <td>{contract.end_date}</td>
+              <td>
+                <select
+                  value={contract.status}
+                  onChange={(e) => handleStatusChange(contract.id, e.target.value)}
+                  className="contract-status"
+                >
+                  <option value="active">Active</option>
+                  <option value="completed">Completed</option>
+                  <option value="pending">Pending</option>
+                  <option value="canceled">Canceled</option>
+                </select>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {contracts.map((contract) => (
-              <tr key={contract.id}>
-                <td>{contract.user ? contract.user.name : "N/A"}</td>
-                <td>{contract.device ? contract.device.name : "N/A"}</td>
-                <td>{contract.start_date}</td>
-                <td>{contract.end_date}</td>
-                <td>
-                  <select
-                    value={contract.status}
-                    onChange={(e) => handleStatusChange(contract.id, e.target.value)}
-                    className="contract-status"
-                  >
-                    <option value="active">Active</option>
-                    <option value="completed">Completed</option>
-                    <option value="pending">Pending</option>
-                    <option value="canceled">Canceled</option>
-                  </select>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+          ))}
+        </tbody>
+      </table>
     </div>
+  </div>
   );
 };
 

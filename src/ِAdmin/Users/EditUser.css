@@ -1,0 +1,75 @@
+
+.edit-user-container {
+    padding-top: 60px;
+  }
+  
+  .edit-user-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .edit-user-title {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    color: #2d2c2c;
+    padding-bottom: 40px;
+  }
+  
+  .edit-user-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .edit-user-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  /* تنسيق الليبل */
+  .edit-user-group label {
+    font-size: 16px;
+    font-weight: 500;
+  }
+  
+  /* الحقول المدخلة */
+  .edit-user-group input,
+  .edit-user-group select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #d1d5db;
+    border-radius: 6px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    outline: none;
+    transition: border-color 0.2s ease-in-out;
+  }
+  
+  .edit-user-group input:focus,
+  .edit-user-group select:focus {
+    border-color: #2bcc91;
+  }
+  
+  /* زر حفظ التعديلات */
+  .edit-user-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #2d2c2c;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+  }
+  
+  .edit-user-button:hover {
+    background-color: #2bcc91;
+  }
+  

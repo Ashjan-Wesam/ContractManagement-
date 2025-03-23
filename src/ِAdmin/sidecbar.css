@@ -69,10 +69,10 @@
   }
   
   .admin-header {
-    font-size: 24px;
+    font-size: 44px;
     font-weight: bold;
     text-align: center;
-    margin-bottom: 20px;
+    padding-bottom: 40px;
   }
   
   /* Table Styling */

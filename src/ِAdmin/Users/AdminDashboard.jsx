@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import '../Sidecbar.css'; // تعديل هنا
+import '../Sidecbar.css';
 
 const AdminDashboard = () => {
   const [users, setUsers] = useState([]);
@@ -9,7 +9,7 @@ const AdminDashboard = () => {
     fetch("http://127.0.0.1:8000/api/users")
     .then((response) => response.json())
     .then((data) => {
-      console.log(data); // افحص البيانات هنا
+      console.log(data); 
       setUsers(data.users); 
     })
   
@@ -40,7 +40,7 @@ const AdminDashboard = () => {
 
   return (
     <div className="admin-container">
-      <h2 className="admin-header">Admin Dashboard</h2>
+      <h2 className="admin-header">User Management</h2>
 
       {/* Add User Button */}
       <button onClick={() => navigate("/admin8")} className="add-user-btn">

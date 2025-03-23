@@ -1,0 +1,77 @@
+/* تصميم الحاوية الرئيسية */
+.dashboard-container {
+    display: flex;
+    gap: 30px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+  }
+  
+  /* تصميم السايد بار */
+  
+  
+  /* تصميم محتوى الداشبورد */
+  .dashboard-content {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dashboard-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  /* تصميم الكروت */
+  .dashboard-cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+  }
+  
+  .dashboard-card {
+    flex: 1;
+    min-width: 200px;
+    padding: 20px;
+    border-radius: 8px;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    background-color: #2bcc91 ;
+  }
+  
+  
+  /* تصميم جدول آخر الاستجارات */
+  .latest-rentals {
+    margin-top: 30px;
+  }
+  
+  .latest-rentals table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .latest-rentals th,
+  .latest-rentals td {
+    padding: 10px;
+    border: 1px solid #dee2e6;
+    text-align: center;
+  }
+  
+  .latest-rentals th {
+    background-color: #2bcc91;
+    color: white;
+  }
+  
+  .latest-rentals tr:nth-child(even) {
+    background-color: #f1f1f1;
+  }
+  
+  .latest-rentals tr:hover {
+    background-color: #d6d8db;
+  }
+  

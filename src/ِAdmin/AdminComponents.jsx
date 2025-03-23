@@ -7,6 +7,9 @@ function Sidebar() {
       <h2 className="sidebar-title">Admin Dashboard</h2>
       <ul className="sidebar-menu">
         <li>
+          <Link to="/dash" className="sidebar-link">Dashboard</Link>
+        </li>
+        <li>
           <Link to="/admin" className="sidebar-link">Users</Link>
         </li>
         <li>
